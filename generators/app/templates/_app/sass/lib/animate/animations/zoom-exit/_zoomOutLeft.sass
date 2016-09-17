@@ -1,0 +1,21 @@
+$animate-name: "zoomOutLeft"
+
+=zoomOutLeft($prefix: "")
+  40%
+    opacity: 1
+    #{$prefix}transform: scale3d(0.475, 0.475, 0.475) translate3d(42px, 0, 0)
+
+  100%
+    opacity: 0
+    #{$prefix}transform: scale3d(0.1) translate3d(-2000px, 0, 0)
+    #{$prefix}transform-origin: left center
+
+@if $use-zoomOutLeft == true
+  @-webkit-keyframes #{$animate-name}
+    +zoomOutLeft("-webkit-")
+
+  @keyframes #{$animate-name}
+    +zoomOutLeft
+
+  .#{$animate-name}
+    +animate-prefixer(animation-name, $animate-name)

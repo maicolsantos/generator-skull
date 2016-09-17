@@ -1,0 +1,10 @@
+=animate-prefixer($property, $value...)
+  -webkit-#{$property}: unquote("#{$value}")
+  #{$property}: unquote("#{$value}")
+
+=animate-keyframe($animation-name)
+  @-webkit-keyframes #{$animation-name}
+    @content
+
+  @keyframes #{$animation-name}
+    @content

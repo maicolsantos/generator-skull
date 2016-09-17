@@ -1,0 +1,22 @@
+$animate-name: "zoomOut"
+
+=zoomOut($prefix: "")
+  0%
+    opacity: 1
+
+  50%
+    opacity: 0
+    #{$prefix}transform: scale3d(0.3, 0.3, 0.3)
+
+  100%
+    opacity: 0
+
+@if $use-zoomOut == true
+  @-webkit-keyframes #{$animate-name}
+    +zoomOut("-webkit-")
+
+  @keyframes #{$animate-name}
+    +zoomOut
+
+  .#{$animate-name}
+    +animate-prefixer(animation-name, $animate-name)

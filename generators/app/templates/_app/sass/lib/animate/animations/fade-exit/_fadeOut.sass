@@ -1,0 +1,11 @@
+@if $use-fadeOut == true
+  +animate-keyframe(fadeOut)
+    0%
+      opacity: 1
+
+    100%
+      opacity: 0
+
+
+  .fadeOut
+    +animate-prefixer(animation-name, fadeOut)

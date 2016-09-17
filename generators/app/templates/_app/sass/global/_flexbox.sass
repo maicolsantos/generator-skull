@@ -1,0 +1,29 @@
+// FLEXBOX
+
+=flex-display
+  display: flex
+
+=flex-grow
+  flex-grow: 1
+
+%flex-display
+  +flex-display
+
+=flex-flow($values: row nowrap)
+  flex-flow: $values
+
+=justify-content($justify: flex-start)
+  justify-content: $justify
+
+=align-content($align: center)
+  align-content: $align
+
+=align-items($align: center)
+  align-items: $align
+
+=flexbox($f-flow, $f-justify, $f-content, $f-items)
+  +flex-display
+  +flex-flow($f-flow)
+  +justify-content($f-justify)
+  +align-content($f-content)
+  +align-items($f-items)

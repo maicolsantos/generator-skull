@@ -1,0 +1,11 @@
+@if $use-flash == true
+  +animate-keyframe(flash)
+    0%, 50%, 100%
+      opacity: 1
+
+    25%, 75%
+      opacity: 0
+
+
+  .flash
+    +animate-prefixer(animation-name, flash)

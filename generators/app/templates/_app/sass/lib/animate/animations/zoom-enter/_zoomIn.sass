@@ -1,0 +1,19 @@
+$animate-name: "zoomIn"
+
+=zoomIn($prefix: "")
+  0%
+    opacity: 0
+    #{$prefix}transform: scale3d(0.3, 0.3, 0.3)
+
+  50%
+    opacity: 1
+
+@if $use-zoomIn == true
+  @-webkit-keyframes #{$animate-name}
+    +zoomIn("-webkit-")
+
+  @keyframes #{$animate-name}
+    +zoomIn
+
+  .#{$animate-name}
+    +animate-prefixer(animation-name, $animate-name)

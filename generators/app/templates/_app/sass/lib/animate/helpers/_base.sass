@@ -1,0 +1,24 @@
+@charset "UTF-8"
+
+body
+  -webkit-backface-visibility: hidden
+
+
+.animated
+  +animate-prefixer(animation-duration, $base-duration)
+
+  +animate-prefixer(animation-fill-mode, $base-fill-mode)
+
+  &.infinite
+    animation-iteration-count: $base-iteration-count
+
+  &.hinge
+    +animate-prefixer(animation-duration, $base-duration * 2)
+
+  &.bounceIn,
+  &.bounceOut
+    +animate-prefixer(animation-duration, $base-duration * 0.75)
+
+  &.flipOutX,
+  &.flipOutY
+    +animate-prefixer(animation-duration, $base-duration * 0.75)

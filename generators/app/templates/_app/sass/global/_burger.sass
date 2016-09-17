@@ -1,0 +1,117 @@
+// Burger parts
+//
+// (---) top    -> &::before
+// [---] middle -> &
+// (---) bottom -> &::after
+
+// Vendor prefixes
+$sass-burger-add-vendor-prefixes: true !default
+
+// Burger
+=burger($width: 30px, $height: 5px, $gutter: 3px, $color: #0091AC, $border-radius: 0, $transition-duration: 0.3s)
+  $burger-height: $height !global
+  $burger-gutter: $gutter !global
+
+  position: relative
+  margin-top: $height + $gutter
+  margin-bottom: $height + $gutter
+
+  @if $sass-burger-add-vendor-prefixes
+    -webkit-user-select: none
+    -moz-user-select: none
+    -ms-user-select: none
+
+  user-select: none
+
+  // 1. Fixes jagged edges in Firefox, see issue #10.
+  &, &::before, &::after
+    display: block
+    width: $width
+    height: $height
+    background-color: $color
+    outline: 1px solid transparent
+
+    // 1
+    @if $border-radius != 0
+      border-radius: $border-radius
+
+    @if $sass-burger-add-vendor-prefixes
+      -webkit-transition-property: background-color, -webkit-transform
+      -moz-transition-property: background-color, -moz-transform
+      -o-transition-property: background-color, -o-transform
+
+    transition-property: background-color, transform
+
+    @if $sass-burger-add-vendor-prefixes
+      -webkit-transition-duration: $transition-duration
+      -moz-transition-duration: $transition-duration
+      -o-transition-duration: $transition-duration
+
+    transition-duration: $transition-duration
+
+  &::before, &::after
+    position: absolute
+    content: ""
+
+  &::before
+    top: -($height + $gutter)
+
+  &::after
+    top: $height + $gutter
+
+// Select parts of the burger
+=burger-parts
+  &, &::before, &::after
+    @content
+
+=burger-top
+  &::before
+    @content
+
+=burger-middle
+  &
+    @content
+
+=burger-bottom
+  &::after
+    @content
+
+// Burger animations
+=burger-to-cross($color: auto)
+  &
+    background-color: transparent
+
+  @if $color != auto
+    &::before, &::after
+      background-color: $color
+
+  &::before
+    @if $sass-burger-add-vendor-prefixes
+      -webkit-transform: translateY($burger-gutter + $burger-height) rotate(45deg)
+      -moz-transform: translateY($burger-gutter + $burger-height) rotate(45deg)
+      -ms-transform: translateY($burger-gutter + $burger-height) rotate(45deg)
+      -o-transform: translateY($burger-gutter + $burger-height) rotate(45deg)
+
+    transform: translateY($burger-gutter + $burger-height) rotate(45deg)
+
+  &::after
+    @if $sass-burger-add-vendor-prefixes
+      -webkit-transform: translateY(-($burger-gutter + $burger-height)) rotate(-45deg)
+      -moz-transform: translateY(-($burger-gutter + $burger-height)) rotate(-45deg)
+      -ms-transform: translateY(-($burger-gutter + $burger-height)) rotate(-45deg)
+      -o-transform: translateY(-($burger-gutter + $burger-height)) rotate(-45deg)
+
+    transform: translateY(-($burger-gutter + $burger-height)) rotate(-45deg)
+
+.menu-button
+  cursor: pointer
+  display: inline-block
+  padding: .5em
+  background-color: transparent
+  border: none
+
+.burger-icon
+  +burger(25px, 3px, 5px, #0091AC)
+
+.menu-button.is-active .burger-icon
+  +burger-to-cross(#444)

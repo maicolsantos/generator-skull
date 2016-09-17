@@ -1,0 +1,30 @@
+{
+  "name": "<%= project_name %>",
+  "version": "1.0.0",
+  "description": "Gulp + Jade-Php + Sass",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://maicols@bitbucket.org/indexdigital/caveira.git"
+  },
+  "author": "maicol.santos@indexdigital.com.br",
+  "license": "MIT",
+  "homepage": "https://bitbucket.org/indexdigital/caveira#readme",
+  "dependencies": {
+    "browser-sync": "^2.15.0",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.1",
+    "gulp-clean": "^0.3.2",
+    "gulp-concat": "^2.6.0",
+    "gulp-connect-php": "0.0.8",
+    "gulp-imagemin": "^3.0.3",
+    "gulp-jade-php": "^2.0.0-0",
+    "gulp-sass": "^2.3.2",
+    "gulp-uglify": "^2.0.0",
+    "imagemin-pngquant": "^5.0.0"
+  },
+  "devDependencies": {}
+}
