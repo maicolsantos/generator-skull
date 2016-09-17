@@ -3,6 +3,7 @@
   "version": "1.0.1",
   "description": "A new generator for Index Digital",
   "homepage": "http://www.indexdigital.com.br/",
+  "readmeFilename": "README.md",
   "author": {
     "name": "Index Digital",
     "email": "maicol.santos@indexdigital.com.br",
