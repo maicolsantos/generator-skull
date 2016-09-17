@@ -1,4 +1,4 @@
-# generator-skull [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url] [![Coverage percentage][coveralls-image]][coveralls-url]
+# generator-skull [![NPM version][npm-image]][npm-url]
 > A new generator for Index Digital
 
 ## Installation
