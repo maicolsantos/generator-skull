@@ -1,0 +1,11 @@
+// Tipografia
+@font-weight-regular: 400;
+@font-weight-bold:    700;
+@font-family:         Arial, "Helvetica Neue", Helvetica, sans-serif;
+@font-family-alt:     Arial, "Helvetica Neue", Helvetica, sans-serif; // Font alternativa, geralmente a do @font-face
+@font-size-base:      16px;
+@font-size-large:     ceil((@font-size-base * 1.25)); // ~20px
+@font-size-small:     ceil((@font-size-base * 0.75)); // ~12px
+
+// Tipografia Mixins
+.texto-padrao{ font:@font-weight-regular @font-size-base @font-family;}

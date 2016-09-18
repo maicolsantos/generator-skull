@@ -1,0 +1,26 @@
+body {
+	-webkit-backface-visibility: hidden;
+}
+
+.animated(@name,@time,@delay) {
+	//Name
+	-webkit-animation-name: @name;
+	-moz-animation-name: @name;
+	-o-animation-name: @name;
+	animation-name: @name;
+	//Duration
+	-webkit-animation-duration: @time;
+	-moz-animation-duration: @time;
+	-o-animation-duration: @time;
+	animation-duration: @time;
+	//Delay
+	-webkit-animation-delay: @delay;
+	-moz-animation-delay: @delay;
+	-o-animation-delay: @delay;
+	animation-delay: @delay;
+	//Fill Mode
+	-webkit-animation-fill-mode: both;
+	-moz-animation-fill-mode: both;
+	-o-animation-fill-mode: both;
+	animation-fill-mode: both;
+}

@@ -10,15 +10,42 @@ module.exports = yeoman.Base.extend({
       'Welcome to the superior ' + chalk.red('generator-skull') + ' generator!'
     ));
 
-    var prompts = [{
-      type: 'input',
-      name: 'project_name',
-      message: 'what is your project name? '
-    }];
+    var prompts = [
+      {
+        type: 'input',
+        name: 'project_name',
+        message: 'what is your project name? '
+      },
+      {
+        type: 'checkbox',
+        name: 'features',
+        message: 'Which additional features would you like to include?',
+        choices: [
+          {
+            name: 'Sass',
+            value: 'includeSass',
+            checked: true
+          },
+          {
+            name: 'Less',
+            value: 'includeLess',
+            checked: false
+          }
+        ]
+      }
+    ];
 
     return this.prompt(prompts).then(function (props) {
-      // To access props later use this.props.someAnswer;
+      var features = props.features;
+
+      function hasFeature(feat) {
+        return features && features.indexOf(feat) !== -1;
+      };
+
       this.props = props;
+      this.includeSass = hasFeature('includeSass');
+      this.includeLess = hasFeature('includeLess');
+
     }.bind(this));
   },
 
@@ -27,8 +54,11 @@ module.exports = yeoman.Base.extend({
     // package.json
     this.fs.copyTpl(
       this.templatePath('package.json'),
-      this.destinationPath('package.json'),{
-        project_name: this.props.project_name
+      this.destinationPath('package.json'),
+      {
+        project_name: this.props.project_name,
+        includeSass: this.includeSass,
+        includeLess: this.includeLess
       }
     );
 
@@ -47,7 +77,11 @@ module.exports = yeoman.Base.extend({
     // gulpfile.js
     this.fs.copyTpl(
       this.templatePath('gulpfile.js'),
-      this.destinationPath('gulpfile.js')
+      this.destinationPath('gulpfile.js'),
+      {
+        includeSass: this.includeSass,
+        includeLess: this.includeLess
+      }
     );
 
     // README.md
@@ -56,10 +90,57 @@ module.exports = yeoman.Base.extend({
       this.destinationPath('README.md')
     );
 
-    // APP
+
+    // Sass
+    if (this.includeSass) {
+      this.fs.copyTpl(
+        this.templatePath('sass'),
+        this.destinationPath('app/sass')
+      );
+    }
+
+    // Less
+    if (this.includeLess) {
+      this.fs.copyTpl(
+        this.templatePath('less'),
+        this.destinationPath('app/less')
+      );
+    }
+
+    // Fonts
     this.fs.copy(
-      this.templatePath('_app'),
-      this.destinationPath('app')
+      this.templatePath('fonts'),
+      this.destinationPath('app/fonts')
+    );
+
+    // Ico
+    this.fs.copy(
+      this.templatePath('ico'),
+      this.destinationPath('app/ico')
+    );
+
+    // Images
+    this.fs.copy(
+      this.templatePath('images'),
+      this.destinationPath('app/images')
+    );
+
+    // Js
+    this.fs.copy(
+      this.templatePath('js'),
+      this.destinationPath('app/js')
+    );
+
+    // Js Head
+    this.fs.copy(
+      this.templatePath('js-head'),
+      this.destinationPath('app/js-head')
+    );
+
+    // Template
+    this.fs.copy(
+      this.templatePath('template'),
+      this.destinationPath('app/template')
     );
 
   },

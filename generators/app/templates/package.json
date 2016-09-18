@@ -16,14 +16,16 @@
   "dependencies": {
     "browser-sync": "^2.15.0",
     "gulp": "^3.9.1",
-    "gulp-autoprefixer": "^3.1.1",
     "gulp-clean": "^0.3.2",
     "gulp-concat": "^2.6.0",
     "gulp-connect-php": "0.0.8",
     "gulp-imagemin": "^3.0.3",
-    "gulp-jade-php": "^2.0.0-0",
-    "gulp-sass": "^2.3.2",
-    "gulp-uglify": "^2.0.0",
+    "gulp-jade-php": "^2.0.0-0",<% if (includeSass) { %>
+    "gulp-autoprefixer": "^3.1.1",
+    "gulp-sass": "^2.3.2",<% } %>
+    "gulp-uglify": "^2.0.0",<% if (includeLess) { %>
+    "gulp-clean-css": "^2.0.8",
+    "gulp-less": "^3.0.3",<% } %>
     "imagemin-pngquant": "^5.0.0"
   },
   "devDependencies": {}

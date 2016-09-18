@@ -30,9 +30,3 @@ MIT © [Index Digital](http://www.indexdigital.com.br/)
 
 [npm-image]: https://badge.fury.io/js/generator-skull.svg
 [npm-url]: https://npmjs.org/package/generator-skull
-[travis-image]: https://travis-ci.org//generator-skull.svg?branch=master
-[travis-url]: https://travis-ci.org//generator-skull
-[daviddm-image]: https://david-dm.org//generator-skull.svg?theme=shields.io
-[daviddm-url]: https://david-dm.org//generator-skull
-[coveralls-image]: https://coveralls.io/repos//generator-skull/badge.svg
-[coveralls-url]: https://coveralls.io/r//generator-skull

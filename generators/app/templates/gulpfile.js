@@ -1,7 +1,10 @@
 var gulp = require('gulp'),
 	clean = require('gulp-clean'),
-	sass = require('gulp-sass'),
-	autoprefixer = require('gulp-autoprefixer'),
+	<% if (includeSass) { -%> sass = require('gulp-sass'),
+		autoprefixer = require('gulp-autoprefixer'),<% } -%>
+	<% if (includeLess) { -%> less = require('gulp-less'),
+		path = require('path');
+		cleanCss = require('gulp-clean-css'),<% } -%>
 	jade = require('gulp-jade-php'),
 	concat = require('gulp-concat'),
 	uglify = require('gulp-uglify'),
@@ -34,6 +37,7 @@ gulp.task('copyfonts', function(){
 	.pipe(gulp.dest(dist+'/fonts/'));
 });
 
+<% if (includeSass) { -%>
 // TASK SASS
 gulp.task('sass', function () {
 	return gulp.src('app/sass/**/*.sass')
@@ -45,6 +49,21 @@ gulp.task('sass', function () {
 gulp.task('sass:watch', function () {
 	gulp.watch('app/sass/**/*.sass', ['sass']);
 });
+<% } -%>
+
+<% if (includeLess) { -%>
+// LESS
+// Compilar LESS
+gulp.task('less', function () {
+	return gulp.src('app/less/**/*.less')
+	.pipe(less({
+		paths: [ path.join(__dirname, 'less', 'includes') ]
+	}))
+	.pipe(cleanCss({compatibility: 'ie8',keepSpecialComments: 0}))
+	.pipe(concat('style.min.css'))
+	.pipe(gulp.dest(dist+'/css/'));
+});
+<% } -%>
 
 // TASK JADE
 gulp.task('jade', function() {
@@ -93,7 +112,9 @@ gulp.task('imagemin', function () {
 
 // Configurações de tasks que rodarão com o reload nos arquivos assistidos
 gulp.task('js-watch', ['js'], reload);
-gulp.task('sass-watch', ['sass'], reload);
+<% if (includeSass) { -%> gulp.task('sass-watch', ['sass'], reload);<% } -%>
+<% if (includeLess) { -%> gulp.task('less-watch', ['less'], reload);<% } -%>
+
 // gulp.task('jade-watch', ['jade'], reload);
 gulp.task("watch:jade", function () {
     browserSync.watch("app/template/**/*.jade").on("change", function () {
@@ -118,19 +139,19 @@ gulp.task('browser-sync',['php'], function() {
 
 // SERVER LIVERELOAD
 gulp.task('serve', ['browser-sync', 'default', 'jade'], function () {
-	gulp.watch("app/sass/**/*.sass",['sass-watch']);
-	// gulp.watch("app/**/*.jade",['jade']);
+	<% if (includeSass) { -%> gulp.watch("app/sass/**/*.sass",['sass-watch']);<% } -%>
+	<% if (includeLess) { -%> gulp.watch("app/source/less/**/*.less",['less-watch']);<% } -%>
 	gulp.start("watch:jade");
 	gulp.watch("app/images/**/*",['imagemin']);
 	gulp.watch("app/js/**/*.js", ['js-watch']);
-	// gulp.watch(dist+'/**/*.php').on('change', function () { browserSync.reload(); });
 });
 
 gulp.task('default', [
 	'jade',
 	'js',
 	'jshead',
-	'sass',
+	<% if (includeSass) { -%> 'sass',<% } -%>
+	<% if (includeLess) { -%>'less',<% } -%>
 	'imagemin',
 	'copyico',
 	'copyfonts'
@@ -138,6 +159,7 @@ gulp.task('default', [
 
 gulp.task('app', [
 	'jade',
-	'js',
-	'sass'
+	<% if (includeLess) { -%> 'less',<% } -%>
+	<% if (includeSass) { -%> 'sass',<% } -%>
+	'js'
 ]);
