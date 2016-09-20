@@ -14,7 +14,7 @@ module.exports = yeoman.Base.extend({
       {
         type: 'input',
         name: 'project_name',
-        message: 'what is your project name? '
+        message: 'What is your project name? '
       },
       {
         type: 'checkbox',
@@ -30,6 +30,11 @@ module.exports = yeoman.Base.extend({
             name: 'Less',
             value: 'includeLess',
             checked: false
+          },
+          {
+            name: 'Wordpress',
+            value: 'includeWordpress',
+            checked: true
           }
         ]
       }
@@ -45,6 +50,7 @@ module.exports = yeoman.Base.extend({
       this.props = props;
       this.includeSass = hasFeature('includeSass');
       this.includeLess = hasFeature('includeLess');
+      this.includeWordpress = hasFeature('includeWordpress');
 
     }.bind(this));
   },
@@ -80,7 +86,8 @@ module.exports = yeoman.Base.extend({
       this.destinationPath('gulpfile.js'),
       {
         includeSass: this.includeSass,
-        includeLess: this.includeLess
+        includeLess: this.includeLess,
+        includeWordpress: this.includeWordpress
       }
     );
 
@@ -104,6 +111,25 @@ module.exports = yeoman.Base.extend({
       this.fs.copyTpl(
         this.templatePath('less'),
         this.destinationPath('app/less')
+      );
+    }
+
+    // Wordpress
+    if (this.includeWordpress) {
+      // STYLE CSS
+      this.fs.copyTpl(
+        this.templatePath('style.css'),
+        this.destinationPath('app/style.css')
+      );
+      // LIB
+      this.fs.copyTpl(
+        this.templatePath('lib'),
+        this.destinationPath('app/lib')
+      );
+      // VENDOR
+      this.fs.copyTpl(
+        this.templatePath('vendor'),
+        this.destinationPath('app/vendor')
       );
     }
 

@@ -146,12 +146,42 @@ gulp.task('serve', ['browser-sync', 'default', 'jade'], function () {
 	gulp.watch("app/js/**/*.js", ['js-watch']);
 });
 
+
+<% if (includeWordpress) { -%>
+// ####################
+// WORDPRESS
+// ####################
+gulp.task('styleCss', function(){
+	gulp.src('app/style.css')
+	.pipe(gulp.dest(dist));
+});
+
+gulp.task('lib', function(){
+	gulp.src('app/lib/**.*')
+	.pipe(gulp.dest(dist+'/lib/'));
+});
+
+gulp.task('vendor', function(){
+	gulp.src('app/vendor/**.*')
+	.pipe(gulp.dest(dist+'/vendor/'));
+});
+// ####################
+// WORDPRESS
+// ####################
+<% } -%>
+
+
 gulp.task('default', [
 	'jade',
 	'js',
 	'jshead',
 	<% if (includeSass) { -%> 'sass',<% } -%>
 	<% if (includeLess) { -%>'less',<% } -%>
+	<% if (includeWordpress) { -%>
+	'styleCss',
+	'lib',
+	'vendor',
+	<% } -%>
 	'imagemin',
 	'copyico',
 	'copyfonts'
