@@ -86,7 +86,8 @@ module.exports = yeoman.Base.extend({
       this.destinationPath('gulpfile.js'),
       {
         includeSass: this.includeSass,
-        includeLess: this.includeLess
+        includeLess: this.includeLess,
+        includeWordpress: this.includeWordpress
       }
     );
 
@@ -118,26 +119,17 @@ module.exports = yeoman.Base.extend({
       // STYLE CSS
       this.fs.copyTpl(
         this.templatePath('style.css'),
-        this.destinationPath('app/style.css'),
-        {
-          includeWordpress: this.includeWordpress
-        }
+        this.destinationPath('app/style.css')
       );
       // LIB
-      this.fs.copy(
+      this.fs.copyTpl(
         this.templatePath('lib'),
-        this.destinationPath('app/lib'),
-        {
-          includeWordpress: this.includeWordpress
-        }
+        this.destinationPath('app/lib')
       );
       // VENDOR
-      this.fs.copy(
+      this.fs.copyTpl(
         this.templatePath('vendor'),
-        this.destinationPath('app/vendor'),
-        {
-          includeWordpress: this.includeWordpress
-        }
+        this.destinationPath('app/vendor')
       );
     }
 
