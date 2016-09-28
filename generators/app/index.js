@@ -131,12 +131,17 @@ module.exports = yeoman.Base.extend({
       // LIB
       this.fs.copyTpl(
         this.templatePath('lib'),
-        this.destinationPath('app/lib')
+        this.destinationPath('app/template/lib')
       );
       // VENDOR
       this.fs.copyTpl(
         this.templatePath('vendor'),
-        this.destinationPath('app/vendor')
+        this.destinationPath('app/template/vendor')
+      );
+      // SCREENSHOT
+      this.fs.copyTpl(
+        this.templatePath('screenshot.png'),
+        this.destinationPath('app/screenshot.png')
       );
     }
 
