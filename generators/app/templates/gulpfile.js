@@ -167,6 +167,16 @@ gulp.task('screenshot', function () {
   	}))
   	.pipe(gulp.dest(dist))
 });
+
+gulp.task('lib', function(){
+	gulp.src('app/lib/**.*')
+	.pipe(gulp.dest(dist+'/lib/'));
+});
+
+gulp.task('vendor', function(){
+	gulp.src('app/vendor/**.*')
+	.pipe(gulp.dest(dist+'/vendor/'));
+});
 // ####################
 // WORDPRESS
 // ####################
@@ -182,6 +192,8 @@ gulp.task('default', [
 	<% if (includeWordpress) { -%>
 	'styleCss',
 	'screenshot',
+	'lib',
+	'vendor',
 	<% } -%>
 	'imagemin',
 	'copyico',
