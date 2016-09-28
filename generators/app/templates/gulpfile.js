@@ -143,6 +143,7 @@ gulp.task('browser-sync',['php'], function() {
 gulp.task('serve', ['browser-sync', 'default', 'jade'], function () {
 	<% if (includeSass) { -%> gulp.watch("app/sass/**/*.sass",['sass-watch']);<% } -%>
 	<% if (includeLess) { -%> gulp.watch("app/source/less/**/*.less",['less-watch']);<% } -%>
+	<% if (includeWordpress) { -%> gulp.watch("app/style.css",['styleCss']);<% } -%>
 	gulp.start("watch:jade");
 	gulp.watch("app/images/**/*",['imagemin']);
 	gulp.watch("app/js/**/*.js", ['js-watch']);
