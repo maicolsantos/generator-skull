@@ -14,7 +14,7 @@ module.exports = yeoman.Base.extend({
       {
         type: 'input',
         name: 'project_name',
-        message: 'What is your project name? '
+        message: 'What is your project fuck name? '
       },
       {
         type: 'checkbox',
@@ -119,7 +119,10 @@ module.exports = yeoman.Base.extend({
       // STYLE CSS
       this.fs.copyTpl(
         this.templatePath('style.css'),
-        this.destinationPath('app/style.css')
+        this.destinationPath('app/style.css'),
+        {
+          project_name: this.props.project_name
+        }
       );
       // LIB
       this.fs.copyTpl(
