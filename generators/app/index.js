@@ -14,7 +14,7 @@ module.exports = yeoman.Base.extend({
       {
         type: 'input',
         name: 'project_name',
-        message: 'What is your project fuck name? '
+        message: 'What is your project name? '
       },
       {
         type: 'checkbox',
@@ -23,7 +23,7 @@ module.exports = yeoman.Base.extend({
         choices: [
           {
             name: 'Jade-Php',
-            value: 'jadePhp',
+            value: 'includeJadePhp',
             checked: true
           },
           {
@@ -53,7 +53,7 @@ module.exports = yeoman.Base.extend({
       };
 
       this.props = props;
-      this.jadePhp = hasFeature('jadePhp');
+      this.includeJadePhp = hasFeature('includeJadePhp');
       this.includeSass = hasFeature('includeSass');
       this.includeLess = hasFeature('includeLess');
       this.includeWordpress = hasFeature('includeWordpress');
@@ -69,6 +69,7 @@ module.exports = yeoman.Base.extend({
       this.destinationPath('package.json'),
       {
         project_name: this.props.project_name,
+        includeJadePhp: this.includeJadePhp,
         includeSass: this.includeSass,
         includeLess: this.includeLess
       }
@@ -91,7 +92,7 @@ module.exports = yeoman.Base.extend({
       this.templatePath('gulpfile.js'),
       this.destinationPath('gulpfile.js'),
       {
-        jadePhp: this.jadePhp,
+        includeJadePhp: this.includeJadePhp,
         includeSass: this.includeSass,
         includeLess: this.includeLess,
         includeWordpress: this.includeWordpress
@@ -177,13 +178,19 @@ module.exports = yeoman.Base.extend({
       this.templatePath('js-head'),
       this.destinationPath('app/js-head')
     );
-
-    // Template
-    this.fs.copy(
-      this.templatePath('template'),
-      this.destinationPath('app/template')
-    );
-
+    if (this.includeJadePhp) {
+      // Template
+      this.fs.copy(
+        this.templatePath('template'),
+        this.destinationPath('app/template')
+      );
+    }else{
+      // Template HTML
+      this.fs.copy(
+        this.templatePath('template-html'),
+        this.destinationPath('app/template')
+      );
+    }
   },
 
   install: function () {
