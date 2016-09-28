@@ -22,6 +22,11 @@ module.exports = yeoman.Base.extend({
         message: 'Which additional features would you like to include?',
         choices: [
           {
+            name: 'Jade Php',
+            value: 'jadePhp',
+            checked: true
+          },
+          {
             name: 'Sass',
             value: 'includeSass',
             checked: true
@@ -48,6 +53,7 @@ module.exports = yeoman.Base.extend({
       };
 
       this.props = props;
+      this.jadePhp = hasFeature('jadePhp');
       this.includeSass = hasFeature('includeSass');
       this.includeLess = hasFeature('includeLess');
       this.includeWordpress = hasFeature('includeWordpress');
@@ -85,6 +91,7 @@ module.exports = yeoman.Base.extend({
       this.templatePath('gulpfile.js'),
       this.destinationPath('gulpfile.js'),
       {
+        jadePhp: this.jadePhp,
         includeSass: this.includeSass,
         includeLess: this.includeLess,
         includeWordpress: this.includeWordpress

@@ -5,7 +5,8 @@ var gulp = require('gulp'),
 	<% if (includeLess) { -%> less = require('gulp-less'),
 		path = require('path');
 		cleanCss = require('gulp-clean-css'),<% } -%>
-	jade = require('gulp-jade-php'),
+	<% if (jadePhp) { -%>jade = require('gulp-jade-php'),<% } else { -%>
+	jade = require('gulp-jade'),<% } -%>
 	concat = require('gulp-concat'),
 	uglify = require('gulp-uglify'),
 	imagemin = require('gulp-imagemin'),
@@ -76,6 +77,7 @@ gulp.task('jade', function() {
 	.pipe(gulp.dest(dist+'/'))
  	.on('end', browserSync.reload);
 });
+
 
 // TASK JS
 gulp.task('js', function() {
