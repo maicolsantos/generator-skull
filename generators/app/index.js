@@ -22,7 +22,7 @@ module.exports = yeoman.Base.extend({
         message: 'Which additional features would you like to include?',
         choices: [
           {
-            name: 'Jade Php',
+            name: 'Jade-Php',
             value: 'jadePhp',
             checked: true
           },
