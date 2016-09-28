@@ -141,6 +141,7 @@ gulp.task('browser-sync',['php'], function() {
 gulp.task('serve', ['browser-sync', 'default', 'jade'], function () {
 	<% if (includeSass) { -%> gulp.watch("app/sass/**/*.sass",['sass-watch']);<% } -%>
 	<% if (includeLess) { -%> gulp.watch("app/source/less/**/*.less",['less-watch']);<% } -%>
+	<% if (includeWordpress) { -%> gulp.watch("app/style.css",['styleCss']);<% } -%>
 	gulp.start("watch:jade");
 	gulp.watch("app/images/**/*",['imagemin']);
 	gulp.watch("app/js/**/*.js", ['js-watch']);
@@ -156,14 +157,14 @@ gulp.task('styleCss', function(){
 	.pipe(gulp.dest(dist));
 });
 
-gulp.task('lib', function(){
-	gulp.src('app/lib/**.*')
-	.pipe(gulp.dest(dist+'/lib/'));
-});
-
-gulp.task('vendor', function(){
-	gulp.src('app/vendor/**.*')
-	.pipe(gulp.dest(dist+'/vendor/'));
+gulp.task('screenshot', function () {
+  	return gulp.src('app/screenshot.png')
+  	.pipe(imagemin({
+	    progressive: true,
+	    svgoPlugins: [{removeViewBox: false}],
+	    use: [pngquant()]
+  	}))
+  	.pipe(gulp.dest(dist))
 });
 // ####################
 // WORDPRESS
@@ -179,8 +180,7 @@ gulp.task('default', [
 	<% if (includeLess) { -%>'less',<% } -%>
 	<% if (includeWordpress) { -%>
 	'styleCss',
-	'lib',
-	'vendor',
+	'screenshot',
 	<% } -%>
 	'imagemin',
 	'copyico',
