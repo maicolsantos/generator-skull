@@ -5,20 +5,15 @@ a, abbr, acronym, address, applet, article, aside, audio, b, big, blockquote, bo
   font-size: 100%
   font: inherit
   vertical-align: baseline
+ul, li
+  list-style-type: none
 
 html
-  font-size: 18px
-  line-height: 1
+  font-size: 62.5%
+  line-height: 1.4
   text-rendering: optimizeLegibility
   -webkit-font-smoothing: antialiased
   -moz-osx-font-smoothing: grayscale
-
-  +sm
-    font-size: 18px
-
-
-  +md
-    font-size: 20px
 
 *, *:before, *:after
   box-sizing: border-box
@@ -32,6 +27,7 @@ html
 body
   padding: 0
   opacity: 0
+  font-size: 1.6rem
 
 input,
 textarea,
@@ -42,6 +38,5 @@ button
 
   &:focus
     outline: none
-
 a
   text-decoration: none
