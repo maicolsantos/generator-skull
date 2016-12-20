@@ -1,12 +1,13 @@
 {
   "name": "generator-skull",
-  "version": "1.1.11",
-  "description": "A new generator for Index Digital",
+  "version": "1.1.12",
+  "description": "A generator to make magic sites by Index Digital",
   "homepage": "https://github.com/maicol-dg/generator-skull",
   "readmeFilename": "README.md",
   "author": {
     "name": "Index Digital",
     "email": "maicol.santos@indexdigital.com.br",
+    "email": "breno.soares@indexdigital.com.br",
     "url": "http://www.indexdigital.com.br/"
   },
   "files": [

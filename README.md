@@ -1,5 +1,5 @@
 # generator-skull [![NPM version][npm-image]][npm-url]
-> A new generator for Index Digital
+> A generator to make magic sites by Index Digital
 
 ## Installation
 
@@ -16,12 +16,18 @@ Then generate your new project:
 yo skull
 ```
 
-## Getting To Know Yeoman
 
- * Yeoman has a heart of gold.
- * Yeoman is a person with feelings and opinions, but is very easy to work with.
- * Yeoman can be too opinionated at times but is easily convinced not to be.
- * Feel free to [learn more about Yeoman](http://yeoman.io/).
+## Features
+
+ * Gulp
+ * Jade
+ * Babel
+ * Sass or Less (your choice)
+ * Wordpress ready
+ * Swiper slide
+ * Font Awesome
+ * Animated Css
+
 
 ## License
 

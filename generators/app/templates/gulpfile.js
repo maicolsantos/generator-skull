@@ -14,7 +14,7 @@ var gulp = require('gulp'),
 	php = require('gulp-connect-php'),
 	browserSync = require('browser-sync'),
 	reload = browserSync.reload;
-
+	babel = require('gulp-babel');
 // GEt NAME FOLDER TO PACKAGE JSON
 gulp.packageJson = require('./package.json');
 var dist = gulp.packageJson.name;
@@ -78,9 +78,17 @@ gulp.task('jade', function() {
  	.on('end', browserSync.reload);
 });
 
+//BABEL
+gulp.task('babel', function () {
+    return gulp.src('app/babel/**/*.js')
+        .pipe(babel({
+            presets: ['es2015']
+        }))
+        .pipe(gulp.dest('app/js/app'));
+});
 
 // TASK JS
-gulp.task('js', function() {
+gulp.task('js',['babel'], function() {
 	return gulp.src(['app/js/lib/*.js','app/js/app/*.js'])
 	.pipe(concat('main.js'))
 	.pipe(gulp.dest(dist+'/js/'));
@@ -146,7 +154,7 @@ gulp.task('serve', ['browser-sync', 'default', 'jade'], function () {
 	<% if (includeWordpress) { -%> gulp.watch("app/style.css",['styleCss']);<% } -%>
 	gulp.start("watch:jade");
 	gulp.watch("app/images/**/*",['imagemin']);
-	gulp.watch("app/js/**/*.js", ['js-watch']);
+	gulp.watch("app/**/*.js", ['js-watch']);
 });
 
 

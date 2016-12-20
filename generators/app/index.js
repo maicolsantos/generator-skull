@@ -178,6 +178,12 @@ module.exports = yeoman.Base.extend({
       this.destinationPath('app/js')
     );
 
+    // BABEL
+    this.fs.copy(
+      this.templatePath('babel'),
+      this.destinationPath('app/babel')
+    );
+
     // Js Head
     this.fs.copy(
       this.templatePath('js-head'),
