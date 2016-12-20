@@ -147,6 +147,11 @@ module.exports = yeoman.Base.extend({
         this.templatePath('screenshot.png'),
         this.destinationPath('app/screenshot.png')
       );
+      // FUNCTIONS
+      this.fs.copyTpl(
+        this.templatePath('functions.jade'),
+        this.destinationPath('app/template/functions.jade')
+      );
     }
 
     // Fonts
