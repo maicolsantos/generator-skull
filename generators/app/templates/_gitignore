@@ -29,6 +29,7 @@ Temporary Items
 .apdisk
 
 dist/
+<%= project_name %>/
 
 ### Emacs ###
 # -*- mode: gitignore; -*-
