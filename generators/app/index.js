@@ -83,8 +83,11 @@ module.exports = yeoman.Base.extend({
 
     // .gitignore
     this.fs.copyTpl(
-      this.templatePath('_.gitignore'),
-      this.destinationPath('.gitignore')
+      this.templatePath('_gitignore'),
+      this.destinationPath('.gitignore'),
+      {
+        project_name: this.props.project_name
+      }
     );
 
     // gulpfile.js
