@@ -1,6 +1,7 @@
 .container
 	max-width: 1120px
 	margin: auto
+	padding: 0 16px
 
 // TRANSFORM
 =transform($transforms)
@@ -18,3 +19,6 @@
 
 	//Fill Mode
 	animation-fill-mode: both
+
+=wd($val)
+	width: calc((#{$val}/12) * 100%)
