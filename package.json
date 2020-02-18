@@ -31,7 +31,7 @@
   "devDependencies": {
     "yeoman-test": "^1.0.0",
     "yeoman-assert": "^2.0.0",
-    "eslint": "^3.1.1",
+    "eslint": "^6.8.0",
     "eslint-config-xo-space": "^0.14.0",
     "gulp": "^3.9.0",
     "gulp-eslint": "^2.0.0",
